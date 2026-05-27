@@ -1,8 +1,10 @@
 { pkgs, ... }:
 
-{
+let
+  isDarwin = pkgs.stdenv.isDarwin;
+in {
   home.username = "ermann";
-  home.homeDirectory = "/home/ermann";
+  home.homeDirectory = if isDarwin then "/Users/ermann" else "/home/ermann";
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;

@@ -10,8 +10,12 @@ install:
 	@echo "Nix already installed, running switch..."
 	@$(MAKE) switch
 
+HM := nix run home-manager -- 
+
+SYSTEM := $(shell nix eval --impure --raw --expr 'builtins.currentSystem')
+
 switch:
-	home-manager switch --flake .
+	$(HM) switch --flake '.#ermann@$(SYSTEM)'
 
 update:
 	nix flake update

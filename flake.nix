@@ -11,12 +11,13 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."ermann" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeFor = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
         modules = [ ./home.nix ];
       };
+    in {
+      homeConfigurations."ermann@aarch64-darwin" = homeFor "aarch64-darwin";
+      homeConfigurations."ermann@aarch64-linux" = homeFor "aarch64-linux";
+      homeConfigurations."ermann@x86_64-linux" = homeFor "x86_64-linux";
     };
 }
