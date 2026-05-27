@@ -1,0 +1,34 @@
+#+TITLE: dotfiles
+
+Home Manager configuration managed with Nix flakes.
+
+* Prerequisites
+
+- macOS or Linux
+- Git
+
+* Setup
+
+#+begin_src bash
+git clone git@github.com:ermanno/nix-config.git ~/.config/home-manager
+cd ~/.config/home-manager
+make install
+#+end_src
+
+After the first run, restart your shell then:
+
+#+begin_src bash
+make switch
+#+end_src
+
+* Usage
+
+| Command        | Description                  |
+|----------------+------------------------------|
+| =make install= | Install Nix and apply config |
+| =make switch=  | Apply config changes         |
+| =make update=  | Update inputs and apply      |
+
+* What's included
+
+- Emacs (pgtk) with native tree-sitter support and all grammars
